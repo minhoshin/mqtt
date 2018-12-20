@@ -4,6 +4,7 @@ var mqtt = require('mqtt');
 var mqttOptions = {
     host: '127.0.0.1',
     port: 1883,
+    clientId: 'mqttjs02',
     // protocol: '',
     // username: '',
     // password: '',

@@ -9,12 +9,26 @@ var mqttOptions = {
     // password: '',
 }
 
+var topic = "testtopic";
+
 var client = mqtt.connect(mqttOptions);
  
 client.on('connect', function () {
     console.log("connected: "+ client.connected);
     // client.subscribe('presence');
-    client.publish('testtopic', 'Hello mqtt test message');
+    // client.publish(topic, 'Hello mqtt test message');
+    setInterval(
+        function(){
+            var now = new Date();
+            client.publish(topic, now.toString());
+    }, 5000);
+
+    function publish(topic,msg,options){
+        console.log("publishing",msg);
+      if (client.connected == true){
+        client.publish(topic,msg,options);
+      }
+    }
 });
  
 // client.on('message', function (topic, message) {
